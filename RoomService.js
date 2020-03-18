@@ -36,6 +36,7 @@ function listen(socket) {
   });
 }
 
+
 /** @param {SocketIO.Server} io */
 module.exports = function(io) {
   _io = io;

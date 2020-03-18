@@ -1,19 +1,10 @@
-const credentials = require('./credentials');
 const express = require('express');
 const app = express();
-let server;
 
 const POST = process.env.POST || 3000;
+const http = require('http');
+const server = http.createServer(app);
 
-if (credentials.key && credentials.cert) {
-  const https = require('https');
-  server = https.createServer(credentials, app);
-  //POST = 443;
-} else {
-  const http = require('http');
-  server = http.createServer(app);
-  //POST = 3000;
-}
 const io = require('socket.io')(server);
 const RoomService = require('./RoomService')(io);
 
@@ -26,3 +17,17 @@ app.get('*', function(req, res) {
     res.sendFile(`${__dirname}/public/index.html`);
 });
 server.listen(POST, () => console.log(`Server is running on POST ${POST}`));
+
+/*
+
+    "express": "^4.17.1",
+    "socket.io": "1.4.*"
+
+    dev
+
+    "@types/node": "^8.0.10",
+    "@types/socket.io-client": "^1.4.29",
+    "@types/webrtc": "0.0.21",
+    "eslint": "^4.2.0"
+
+*/

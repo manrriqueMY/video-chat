@@ -52,7 +52,7 @@
     .then(function () {
       socket.emit('offer', id, peerConnection.localDescription);
     });
-    peerConnection.onaddstream = event => handleRemoteStreamAdded(event.stream, id);
+    peerConnection.ontrack = event => handleRemoteStreamAdded(event.stream, id);
     peerConnection.onicecandidate = function(event) {
       if (event.candidate) {
         socket.emit('candidate', id, event.candidate);
@@ -72,7 +72,7 @@
     .then(function () {
       socket.emit('answer', id, peerConnection.localDescription);
     });
-    peerConnection.onaddstream = event => handleRemoteStreamAdded(event.stream, id);
+    peerConnection.ontrack = event => handleRemoteStreamAdded(event.stream, id);
     peerConnection.onicecandidate = function(event) {
       if (event.candidate) {
         socket.emit('candidate', id, event.candidate);
