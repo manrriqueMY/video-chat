@@ -37,6 +37,7 @@ io.on('connection', function(socket){
     }
   });
 });
+
 io.on('error', e => console.log(e));
 
 app.use(express.static(__dirname + '/public'));
