@@ -6,7 +6,6 @@ const server = http.createServer(app);
 const io = socketio(server);
 const PORT = process.env.PORT || 3000;
 
-let _io;
 const MAX_CLIENTS = 3;
 
 io.on('connection', function(socket){
@@ -43,21 +42,7 @@ io.on('error', e => console.log(e));
 app.use(express.static(__dirname + '/public'));
 
 app.get('*', function(req, res) {
-    res.sendFile(`${__dirname}/public/index.html`);
+    res.sendFile(__dirname+"/public/index.html");
 });
 
-server.listen(PORT,"192.168.1.9", () => console.log(`Server is running on PORT ${PORT}`));
-
-/*
-
-    "express": "^4.17.1",
-    "socket.io": "1.4.*"
-
-    dev
-
-    "@types/node": "^8.0.10",
-    "@types/socket.io-client": "^1.4.29",
-    "@types/webrtc": "0.0.21",
-    "eslint": "^4.2.0"
-
-*/
+server.listen(PORT, () => {console.log("Server is running on PORT "+PORT);});
