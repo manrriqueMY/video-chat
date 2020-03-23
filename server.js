@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 var fs = require('fs');
 
-var https = require('https');
-var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+var http = require('http');
+var privateKey  = fs.readFileSync('sslcert/cprivate.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/ckey.cer', 'utf8');
 
-var credentials = {key: privateKey, cert: certificate};
-const server = https.createServer(app);
+//var credentials = {key: privateKey, cert: certificate};
+const server = http.createServer(app);
 //const server = https.createServer(credentials, app);
 const PORT = process.env.PORT || 3000;
 
