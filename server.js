@@ -1,11 +1,13 @@
+var sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const app = express();
 var fs = require('fs');
 
 var http = require('http');
-var privateKey  = fs.readFileSync('sslcert/cprivate.key', 'utf8');
-var certificate = fs.readFileSync('sslcert/ckey.cer', 'utf8');
+//var privateKey  = fs.readFileSync('sslcert/cprivate.key', 'utf8');
+//var certificate = fs.readFileSync('sslcert/ckey.cer', 'utf8');
 
+app.use(sslRedirect());
 //var credentials = {key: privateKey, cert: certificate};
 const server = http.createServer(app);
 //const server = https.createServer(credentials, app);
